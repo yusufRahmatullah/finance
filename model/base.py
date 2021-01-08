@@ -12,3 +12,12 @@ class Base:
         default=datetime.now,
         onupdate=datetime.now
     )
+
+
+def cached(func):
+    def wrapper(self=None):
+        var_name = f'_{func.__name__}'
+        if not hasattr(self, var_name):
+            setattr(self, var_name, func(self))
+        return getattr(self, var_name)
+    return wrapper

@@ -3,7 +3,7 @@ from datetime import date
 from model import Transaction
 from service.base import Base
 from service import budget as budget_service
-from service.error import RecordNotFoundError
+from service.error import BudgetAmountExceedLimitError, RecordNotFoundError
 
 
 class TransactionService(Base):
@@ -14,6 +14,8 @@ class TransactionService(Base):
         budget = budget_service.BudgetService.find_by_name(
             budget_name, trx_date
         )
+        if outcome > budget.left:
+            raise BudgetAmountExceedLimitError(budget.left)
         trx = Transaction(
             date=trx_date,
             budget_id=budget.id,

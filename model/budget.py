@@ -1,5 +1,5 @@
 from app import db
-from model.base import Base
+from model.base import Base, cached
 from model import transaction
 
 
@@ -12,10 +12,12 @@ class Budget(Base, db.Model):
         return f'{self.name} | {self.amount} | {self.humanize_period() }'
 
     @property
+    @cached
     def transactions(self):
         return transaction.Transaction.query.filter_by(budget_id=self.id).all()
 
     @property
     def left(self):
         spend = sum(map(lambda x: x.outcome, self.transactions))
-        return self.amount - spend
+        income = sum(map(lambda x: x.income, self.transactions))
+        return self.amount - spend + income

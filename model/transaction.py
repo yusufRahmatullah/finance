@@ -1,5 +1,5 @@
 from app import db
-from model.base import Base
+from model.base import Base, cached
 from model import budget
 
 
@@ -14,5 +14,6 @@ class Transaction(Base, db.Model):
         return f'{self.date} | {self.thing} | {self.income} | {self.outcome}'    
 
     @property
+    @cached
     def budget(self):
         return budget.Budget.query.get(self.budget_id)

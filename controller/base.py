@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from service import RecordNotFoundError
+from service import RecordNotFoundError, UnprocessableEntityError
 
 BaseController = Blueprint('base', __name__)
 
@@ -13,6 +13,11 @@ def index():
 @BaseController.app_errorhandler(RecordNotFoundError)
 def handle_not_found(e):
     return jsonify(error=str(e)), 404
+
+
+@BaseController.app_errorhandler(UnprocessableEntityError)
+def handle_not_found(e):
+    return jsonify(error=str(e)), 422
 
 
 def serialize(model, serializer):
