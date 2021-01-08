@@ -1,6 +1,5 @@
 from model import Transaction
 from serializer.base import Base
-from serializer.budget import BudgetSerializer
 
 
 class TransactionSerializer(Base):

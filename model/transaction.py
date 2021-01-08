@@ -1,6 +1,6 @@
 from app import db
 from model.base import Base
-from model.budget import Budget
+from model import budget
 
 
 class Transaction(Base, db.Model):
@@ -11,8 +11,8 @@ class Transaction(Base, db.Model):
     outcome = db.Column(db.Integer, default=0)
 
     def __repr__(self):
-        return f'{self.date} | {self.thing} | {self.income} | {self.outcome}'
+        return f'{self.date} | {self.thing} | {self.income} | {self.outcome}'    
 
     @property
     def budget(self):
-        return Budget.query.get(self.budget_id)
+        return budget.Budget.query.get(self.budget_id)

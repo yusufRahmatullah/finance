@@ -2,7 +2,7 @@ from datetime import date
 
 from model import Transaction
 from service.base import Base
-from service.budget import BudgetService
+from service import budget as budget_service
 from service.error import RecordNotFoundError
 
 
@@ -11,7 +11,9 @@ class TransactionService(Base):
     def add_transaction(cls,
         trx_date: date, budget_name: str, thing: str,
         income: int, outcome: int):
-        budget = BudgetService.find_by_name(budget_name, trx_date)
+        budget = budget_service.BudgetService.find_by_name(
+            budget_name, trx_date
+        )
         trx = Transaction(
             date=trx_date,
             budget_id=budget.id,
