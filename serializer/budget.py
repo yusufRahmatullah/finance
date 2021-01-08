@@ -10,7 +10,8 @@ class BudgetSerializer(Base):
             'name': model.name,
             'amount': model.amount,
             'period': model.period.strftime('%Y-%m-%d'),
-            'transactions': cls._serialize_transactions(model.transactions)
+            'transactions': cls._serialize_transactions(model.transactions),
+            'left': model.left
         })
 
     @staticmethod
