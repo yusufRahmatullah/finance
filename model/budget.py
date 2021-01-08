@@ -17,6 +17,7 @@ class Budget(Base, db.Model):
         return transaction.Transaction.query.filter_by(budget_id=self.id).all()
 
     @property
+    @cached
     def left(self):
         spend = sum(map(lambda x: x.outcome, self.transactions))
         income = sum(map(lambda x: x.income, self.transactions))
