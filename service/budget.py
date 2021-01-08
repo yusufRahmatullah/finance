@@ -14,13 +14,43 @@ class BudgetService(Base):
 
     @classmethod
     def delete_budget(cls, id: int):
-        budget = Budget.query.get(id)
+        budget = cls.get_budget(id)
+        cls.delete(budget)
+        return budget
+
+    @staticmethod
+    def find_by_name(name: str, trx_date: date):
+        period = date(trx_date.year, trx_date.month, 1)
+        if trx_date.day >= 27:
+            if period.month == 12:
+                period.month = 1
+                period.year += 1
+            else:
+                period.month += 1
+        budget = Budget.query.filter_by(name=name, period=period).first()
         if not budget:
             raise RecordNotFoundError
-        cls.delete(budget)
         return budget
 
 
     @staticmethod
+    def get_budget(id: int):
+        budget = Budget.query.get(id)
+        if not budget:
+            raise RecordNotFoundError
+        return budget
+
+    @staticmethod
     def get_budgets():
         return Budget.query.all()
+
+    @staticmethod
+    def total_budgets(year: int, month: int):
+        period = date(year, month, 1)
+        budgets = Budget.query.filter_by(period=period).all()
+        if not budgets:
+            return 0
+        s = 0
+        for budget in budgets:
+            s += budget.amount
+        return s
