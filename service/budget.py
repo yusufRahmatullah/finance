@@ -41,8 +41,9 @@ class BudgetService(Base):
         return budget
 
     @staticmethod
-    def get_budgets():
-        return Budget.query.all()
+    def get_budgets(year: int, month: int):
+        period = date(year, month, 1)
+        return Budget.query.filter_by(period=period).all()        
 
     @staticmethod
     def total_budgets(year: int, month: int):
