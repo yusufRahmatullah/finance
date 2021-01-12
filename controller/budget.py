@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, render_template, request
 
-from controller.base import serialize
+from controller.base import get_period, serialize
 from service import BudgetService
 from serializer import BudgetSerializer
 
@@ -8,19 +8,32 @@ BudgetController = Blueprint('budget', __name__)
 
 
 @BudgetController.route('/')
-def budgets():
-    year = int(request.args.get('year'))
-    month = int(request.args.get('month'))
-    return serialize(BudgetService.get_budgets(year, month), BudgetSerializer)
+def show():
+    return render_template('budget.html')
+
+
+@BudgetController.route('/get')
+def get_budgets():
+    period = get_period()
+    return serialize(
+        BudgetService.get_budgets(period.year, period.month),
+        BudgetSerializer
+    )
+
+
+@BudgetController.route('/names')
+def get_budget_names():
+    period = get_period()
+    budget_names = BudgetService.get_budget_names(period.year, period.month)
+    return jsonify(budget_names)
 
 
 @BudgetController.route('/add')
 def add_budget():
     name = request.args.get('name')
     amount = int(request.args.get('amount'))
-    year = int(request.args.get('year'))
-    month = int(request.args.get('month'))
-    budget = BudgetService.add_budget(name, amount, year, month)
+    period = get_period()
+    budget = BudgetService.add_budget(name, amount, period.year, period.month)
     return serialize(budget, BudgetSerializer)
 
 
@@ -33,9 +46,8 @@ def delete_budget():
 
 @BudgetController.route('/total')
 def total_budgets():
-    year = int(request.args.get('year'))
-    month = int(request.args.get('month'))
-    total = BudgetService.total_budgets(year, month)
+    period = get_period()
+    total = BudgetService.total_budgets(period.year, period.month)
     return jsonify({
         'total': total
     })

@@ -1,0 +1,14 @@
+{% extends "base_table.html" %}
+{% set title = 'Transactions' %}
+{% set onload_function = 'loadTransactions();' %}
+{% block table_header %}
+  <th>Date</th>
+  <th>Budget</th>
+  <th>Thing</th>
+  <th>Income</th>
+  <th>Outcome</th>
+  <th>Total</th>
+{% endblock %}
+{% block page_script %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/transaction.js') }}"></script>
+{% endblock %}

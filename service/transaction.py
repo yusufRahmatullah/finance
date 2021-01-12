@@ -69,9 +69,14 @@ class TransactionService(Base):
             raise RecordNotFoundError
         return trx
 
-    @staticmethod
-    def get_transactions():
-        return Transaction.query.all()
+    @classmethod
+    def get_transactions(cls, period: date):
+        begin, end = cls.generate_period(period)
+        return Transaction.query \
+            .filter(Transaction.date.between(
+                begin.isoformat(),
+                end.isoformat()
+            )).all()
 
     @staticmethod
     def _get_budgets_by_names(names: list, trx_date: date):

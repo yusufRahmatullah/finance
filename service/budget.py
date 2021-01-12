@@ -33,22 +33,19 @@ class BudgetService(Base):
         return budget
 
     @staticmethod
-    def generate_period(period_date: date):
-        year = period_date.year
-        month = period_date.month
-        begin = date(year, month, 27)
-        if month == 12:
-            end = date(year + 1, 1, 26)
-        else:
-            end = date(year, month + 1, 26)
-        return begin, end
-
-    @staticmethod
     def get_budget(id: int):
         budget = Budget.query.get(id)
         if not budget:
             raise RecordNotFoundError
         return budget
+
+    @staticmethod
+    def get_budget_names(year: int, month: int):
+        period = date(year, month, 1)
+        return list(map(
+            lambda x: x.name,
+            Budget.query.filter_by(period=period).all()
+        ))
 
     @staticmethod
     def get_budgets(year: int, month: int):

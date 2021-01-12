@@ -1,0 +1,11 @@
+{% extends "base_table.html" %}
+{% set title = 'Budgets' %}
+{% set onload_function = 'getBudgets();' %}
+{% block table_header %}
+  <th>Name</th>
+  <th>Amount</th>
+  <th>Left</th>
+{% endblock %}
+{% block page_script %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/budget.js') }}"></script>
+{% endblock %}

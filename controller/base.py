@@ -1,3 +1,5 @@
+from datetime import date
+
 from flask import Blueprint, jsonify, request
 
 from service import RecordNotFoundError, UnprocessableEntityError
@@ -28,3 +30,16 @@ def serialize(model, serializer):
         )))
     else:
         return jsonify(serializer.serialize(model))
+
+
+def get_period():
+    now = date.today()
+    year = now.year
+    month = now.month
+    day = now.day
+    if day >= 27:
+        month += 1
+        if month >= 12:
+            month = 1
+            year += 1
+    return date(year, month, day)

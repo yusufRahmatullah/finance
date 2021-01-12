@@ -1,8 +1,8 @@
 from datetime import date
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, render_template, request
 
-from controller.base import serialize
+from controller.base import get_period, serialize
 from service import TransactionService
 from serializer import TransactionSerializer
 
@@ -10,9 +10,14 @@ TransactionController = Blueprint('transaction', __name__)
 
 
 @TransactionController.route('/')
-def transactions():
+def show():
+    return render_template('transaction.html')
+
+
+@TransactionController.route('/get')
+def get_transactions():
     return serialize(
-        TransactionService.get_transactions(), TransactionSerializer
+        TransactionService.get_transactions(get_period()), TransactionSerializer
     )
 
 
