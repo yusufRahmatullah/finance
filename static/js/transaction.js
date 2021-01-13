@@ -58,5 +58,5 @@ function transactionView(trx, currentBudget, bold) {
     <td>${humanizeAmount(trx.outcome)}</td>
     <td>${humanizeAmount(total)}</td>
   </tr> 
-  `
+  `;
 }

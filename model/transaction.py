@@ -11,7 +11,7 @@ class Transaction(Base, db.Model):
     outcome = db.Column(db.Integer, default=0)
 
     def __repr__(self):
-        return f'{self.date} | {self.thing} | {self.income} | {self.outcome}'    
+        return f'{self.date} | {self.thing} | {self.income} | {self.outcome}'
 
     @property
     @cached

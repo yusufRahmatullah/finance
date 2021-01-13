@@ -22,7 +22,8 @@ def add_form():
 @TransactionController.route('/get')
 def get_transactions():
     return serialize(
-        TransactionService.get_transactions(get_period()), TransactionSerializer
+        TransactionService.get_transactions(get_period()),
+        TransactionSerializer
     )
 
 

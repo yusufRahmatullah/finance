@@ -6,6 +6,7 @@ from app import db, migrate
 from controller import (
     BaseController,
     BudgetController,
+    MutationController,
     TransactionController,
     WalletController
 )
@@ -27,5 +28,6 @@ migrate.init_app(app, db)
 
 app.register_blueprint(BaseController)
 app.register_blueprint(BudgetController, url_prefix='/budgets')
+app.register_blueprint(MutationController, url_prefix='/mutations')
 app.register_blueprint(TransactionController, url_prefix='/transactions')
 app.register_blueprint(WalletController, url_prefix='/wallets')

@@ -1,0 +1,16 @@
+{% extends "base_table.html" %}
+{% set title = 'Mutations' %}
+{% set onload_function = 'loadMutations();' %}
+{% set table_add_link = '/mutations/add-form' %}
+
+{% block table_header %}
+  <th>Date</th>
+  <th>Thing</th>
+  <th>From</th>
+  <th>To</th>
+  <th>Amount</th>
+  <th>From Left</th>
+{% endblock %}
+{% block page_script %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/mutation.js') }}"></script>
+{% endblock %}

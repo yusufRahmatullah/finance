@@ -42,4 +42,4 @@ def get_period():
         if month >= 12:
             month = 1
             year += 1
-    return date(year, month, day)
+    return date(year, month, 1)

@@ -30,3 +30,19 @@ def add_wallet():
     period = get_period()
     wallet = WalletService.add_wallet(name, amount, period)
     return serialize(wallet, WalletSerializer)
+
+
+@WalletController.route('/names')
+def get_wallet_names():
+    period = get_period()
+    wallet_names = WalletService.get_wallet_names(period)
+    return jsonify(wallet_names)
+
+
+@WalletController.route('/total')
+def total_wallets():
+    period = get_period()
+    total = WalletService.total_wallets(period)
+    return jsonify({
+        'total': total
+    })

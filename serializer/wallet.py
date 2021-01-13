@@ -1,5 +1,6 @@
 from model import Wallet
 from serializer.base import Base
+from serializer import mutation
 
 
 class WalletSerializer(Base):
@@ -9,10 +10,14 @@ class WalletSerializer(Base):
             'name': model.name,
             'amount': model.amount,
             'period': model.period.strftime('%Y-%m-%d'),
-            'transactions': cls._serialize_transactions(model.transactions),
+            'from_mutations': cls._serialize_mutations(model.from_mutations),
+            'to_mutations': cls._serialize_mutations(model.to_mutations),
             'left': model.left
         })
 
     @staticmethod
-    def _serialize_transactions(transactions):
-        return transactions  # notimplemented yet
+    def _serialize_mutations(mutations):
+        return list(map(
+            mutation.MutationSerializer.serialize,
+            mutations
+        ))

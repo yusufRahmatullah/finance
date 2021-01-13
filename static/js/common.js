@@ -30,6 +30,10 @@ function humanizeAmount(amount) {
 }
 
 function humanizeName(name) {
+  if (!name) {
+    return "";
+  }
+
   var tokens = name.split('_');
   var res = [];
 

@@ -1,0 +1,37 @@
+{% extends "base_form.html" %}
+{% set title = 'Add Mutation' %}
+{% set onload_function = 'initForm();' %}
+
+{% block form_body %}
+<label for="date">Mutation Date</label>
+<input name="date" type="text" class="datepicker" />
+
+<div class="input-field col s12">
+  <label for="thing">Thing</label>
+  <input name="thing" type="text" class="validate" />
+</div>
+
+<div class="input-field col s12">
+  <select id="from-wallet-name-options" name="from">
+    <option value="" disabled selected>From Wallet</option>
+  </select>
+  <label>From</label>
+</div>
+
+<div class="input-field col s12">
+  <select id="to-wallet-name-options" name="to">
+    <option value="" disabled selected>To Wallet</option>
+  </select>
+  <label>To</label>
+</div>
+
+<div class="input-field col s12"></div>
+  <label for="amount">Amount</label>
+  <input name="amount" type="number" class="validate" min="0" />
+  <span id="amount-error-msg" class="helper-text" data-error="invalid"></span>
+</div>
+{% endblock %}
+
+{% block page_script %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/mutation_add.js') }}"></script>
+{% endblock %}

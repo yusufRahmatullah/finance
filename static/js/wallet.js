@@ -5,7 +5,7 @@ function generateTable(wallets) {
   var total_left = 0;
 
   wallets.forEach(wallet => {
-    ctn = walletView(wallet);
+    ctn += walletView(wallet);
     total += wallet.amount;
     total_left += wallet.left;
   });

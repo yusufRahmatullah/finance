@@ -1,5 +1,6 @@
 from app import db
 from model.base import Base, cached
+from model import mutation
 
 
 class Wallet(Base, db.Model):
@@ -12,12 +13,17 @@ class Wallet(Base, db.Model):
 
     @property
     @cached
-    def transactions(self):
-        return []  # wallet-transaction not implemented yet
+    def from_mutations(self):
+        return mutation.Mutation.query.filter_by(from_id=self.id)
 
     @property
     @cached
     def left(self):
-        spend = sum(map(lambda x: x.outcome, self.transactions))
-        income = sum(map(lambda x: x.income, self.transactions))
-        return self.amount - spend + income
+        tos = sum(map(lambda x: x.amount, self.to_mutations))
+        froms = sum(map(lambda x: x.amount, self.from_mutations))
+        return self.amount - froms + tos
+
+    @property
+    @cached
+    def to_mutations(self):
+        return mutation.Mutation.query.filter_by(to_id=self.id)

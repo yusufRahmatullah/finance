@@ -11,8 +11,8 @@ function submitForm() {
     return;
   }
 
-  if (amount <= 0) {
-    M.toast({html: 'Amount should be positive'})
+  if (amount < 0) {
+    M.toast({html: 'Amount should be non-negative'})
     return;
   }
 
