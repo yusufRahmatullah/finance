@@ -11,10 +11,20 @@ function budgetView(budget) {
 function generateTable(budgets) {
   var tableNode = q('#table-body');
   var ctn = '';
+  var total = 0;
+  var total_left = 0;
 
   budgets.forEach(b => {
     ctn += budgetView(b);
+    total += b.amount;
+    total_left += b.left;
   });
+  ctn += budgetView({
+    name: 'Total',
+    amount: total,
+    left: total_left,
+  });
+
   appendNode(tableNode, ctn);
 }
 

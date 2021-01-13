@@ -3,6 +3,14 @@ function generateTable(trxs, totalBudget) {
   var ctn = '';
   var currentBudget = totalBudget;
 
+  ctn += transactionView({
+    date: '',
+    budget: '',
+    thing: '&lt;init&gt;',
+    outcome: 0,
+    income: totalBudget,
+  }, 0)
+
   trxs.forEach(trx => {
     ctn += transactionView(trx, currentBudget);
     currentBudget = currentBudget + trx.income - trx.outcome;
