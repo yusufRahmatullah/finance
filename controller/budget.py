@@ -12,6 +12,11 @@ def show():
     return render_template('budget.html')
 
 
+@BudgetController.route('/add-form')
+def add_form():
+    return render_template('budget_add_form.html')
+
+
 @BudgetController.route('/get')
 def get_budgets():
     period = get_period()

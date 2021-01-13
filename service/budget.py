@@ -8,6 +8,7 @@ from service.error import RecordNotFoundError
 class BudgetService(Base):
     @classmethod
     def add_budget(cls, name: str, amount: int, year: int, month: int):
+        name = name.replace(' ', '_').lower()
         budget = Budget(name=name, amount=amount, period=date(year, month, 1))
         cls.save(budget)
         return budget

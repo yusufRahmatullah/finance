@@ -3,7 +3,7 @@ function initBudgetNames(names) {
   var ctn = '';
 
   names.forEach(name => {
-    var norm_name = normalizeName(name);
+    var norm_name = humanizeName(name);
     ctn += `<option value="${name}">${norm_name}</option>`;
   });
 
@@ -35,18 +35,6 @@ function initMaterials() {
     defaultDate: new Date(),
     setDefaultDate: true,
   });
-}
-
-function normalizeName(name) {
-  var tokens = name.split('_');
-  var res = [];
-
-  tokens.forEach(token => {
-    var title = token[0].toUpperCase() + token.substr(1);
-    res.push(title);
-  });
-
-  return res.join(' ')
 }
 
 function submitForm() {
@@ -87,6 +75,6 @@ function submitTransaction(date, budgets, thing, income, outcome) {
     }
   })
   .catch(err => {
-    console.error("Failed get transactions. " + err);
+    console.error("Failed create transactions. " + err);
   })
 }

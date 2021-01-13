@@ -1,7 +1,7 @@
 function budgetView(budget) {
   return `
   <tr>
-    <td>${budget.name}</td>
+    <td>${humanizeName(budget.name)}</td>
     <td>${humanizeAmount(budget.amount)}</td>
     <td>${humanizeAmount(budget.left)}</td>
   </tr> 

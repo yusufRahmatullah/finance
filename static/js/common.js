@@ -29,6 +29,18 @@ function humanizeAmount(amount) {
   return 'Rp' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
+function humanizeName(name) {
+  var tokens = name.split('_');
+  var res = [];
+
+  tokens.forEach(token => {
+    var title = token[0].toUpperCase() + token.substr(1);
+    res.push(title);
+  });
+
+  return res.join(' ')
+}
+
 function humanizePeriod(period) {
   var year = period[0];
   var month = period[1];
