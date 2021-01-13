@@ -1,0 +1,20 @@
+{% extends "base_form.html" %}
+{% set title = 'Add Wallets' %}
+{% set onload_function = 'initForm();' %}
+
+{% block form_body %}
+<div class="input-field col s12">
+  <label for="name">Wallet Name</label>
+  <input name="name" type="text" class="validate" />
+</div>
+
+<div class="input-field col s12"></div>
+  <label for="amount">Amount</label>
+  <input name="amount" type="number" class="validate" min="0" />
+  <span id="income-error-msg" class="helper-text" data-error="invalid"></span>
+</div>
+{% endblock %}
+
+{% block page_script %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/wallet_add.js') }}"></script>
+{% endblock %}

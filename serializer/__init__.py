@@ -1,2 +1,3 @@
 from serializer.budget import BudgetSerializer
 from serializer.transaction import TransactionSerializer
+from serializer.wallet import WalletSerializer

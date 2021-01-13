@@ -7,10 +7,10 @@ function submitBudget(name, amount) {
   fetch(url)
   .then(resp => resp.json())
   .then(data => {
-    if (data.length == 0) {
-      M.toast({html: 'Failed to create budget'})
-    } else {
+    if (data) {
       window.location.replace('/budgets');
+    } else {
+      M.toast({html: 'Failed to create budget'})
     }
   })
   .catch(err => {

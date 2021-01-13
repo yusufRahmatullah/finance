@@ -16,15 +16,7 @@
 {% else %}
   <body>
 {% endif %}
-    <nav>
-      <div class="nav-wrapper">
-        <span id="selected-menu" class="brand-logo">{{ title }}</span>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/budgets">Budgets</a></li>
-          <li><a href="/transactions">Transactions</a></li>
-        </ul>
-      </div>
-    </nav>
+    {% include 'base_nav.html' %}
 
     <form name="form">
       {% block form_body %}{% endblock %}

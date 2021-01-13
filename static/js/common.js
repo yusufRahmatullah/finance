@@ -56,5 +56,5 @@ function setPeriod() {
   var period = getPeriod();
   var node = q('#selected-menu');
 
-  node.innerHTML += `- ${humanizePeriod(period)}`;
+  node.innerHTML += ` - ${humanizePeriod(period)}`;
 }

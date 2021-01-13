@@ -4,8 +4,10 @@ from flask import Flask, jsonify, request
 
 from app import db, migrate
 from controller import (
-    BaseController, BudgetController, TransactionController,
-    serialize
+    BaseController,
+    BudgetController,
+    TransactionController,
+    WalletController
 )
 from model import Budget, Transaction
 from serializer import BudgetSerializer, TransactionSerializer
@@ -26,3 +28,4 @@ migrate.init_app(app, db)
 app.register_blueprint(BaseController)
 app.register_blueprint(BudgetController, url_prefix='/budgets')
 app.register_blueprint(TransactionController, url_prefix='/transactions')
+app.register_blueprint(WalletController, url_prefix='/wallets')

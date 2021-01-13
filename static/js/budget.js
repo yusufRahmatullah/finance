@@ -1,11 +1,16 @@
-function budgetView(budget) {
+function budgetView(budget, bold) {
+  var tr_attr = '';
+  if (bold) {
+    tr_attr = 'class="bold"';
+  }
+
   return `
-  <tr>
+  <tr ${tr_attr}>
     <td>${humanizeName(budget.name)}</td>
     <td>${humanizeAmount(budget.amount)}</td>
     <td>${humanizeAmount(budget.left)}</td>
-  </tr> 
-  `
+  </tr>
+  `;
 }
 
 function generateTable(budgets) {
@@ -23,7 +28,7 @@ function generateTable(budgets) {
     name: 'Total',
     amount: total,
     left: total_left,
-  });
+  }, true);
 
   appendNode(tableNode, ctn);
 }

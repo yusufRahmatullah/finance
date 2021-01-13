@@ -4,3 +4,4 @@ from service.error import (
     UnprocessableEntityError
 )
 from service.transaction import TransactionService
+from service.wallet import WalletService

@@ -1,0 +1,13 @@
+{% extends "base_table.html" %}
+{% set title = 'Wallets' %}
+{% set onload_function = 'getWallets();' %}
+{% set table_add_link = '/wallets/add-form' %}
+
+{% block table_header %}
+  <th>Name</th>
+  <th>Amount</th>
+  <th>Left</th>
+{% endblock %}
+{% block page_script %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/wallet.js') }}"></script>
+{% endblock %}
