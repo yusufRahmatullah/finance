@@ -26,16 +26,11 @@
       </div>
     </nav>
 
-    <table>
-      <thead>
-        {% block table_header %}{% endblock %}
-      </thead>
-      <tbody id="table-body">
+    <form name="form">
+      {% block form_body %}{% endblock %}
 
-      </tbody>
-    </table>
-
-    <a class="btn-floating btn-large waves-effect waves-light red right" href="{{ table_add_link }}"><i class="material-icons">+</i></a>
+      <a class="waves-effect waves-light btn right" onclick="submitForm(); return false;">Submit</a>
+    </form>
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/common.js') }}"></script>

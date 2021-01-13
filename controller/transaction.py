@@ -14,6 +14,11 @@ def show():
     return render_template('transaction.html')
 
 
+@TransactionController.route('/add-form')
+def add_form():
+    return render_template('transaction_add_form.html')
+
+
 @TransactionController.route('/get')
 def get_transactions():
     return serialize(
@@ -38,7 +43,6 @@ def add_transaction():
 def add_split_transactions():
     trx_date = date.fromisoformat(request.args.get('date'))
     budget_names = request.args.getlist('budgets[]')
-    print('== budget_names ==', budget_names)
     thing = request.args.get('thing')
     income = int(request.args.get('income', default=0))
     outcome = int(request.args.get('outcome', default=0))

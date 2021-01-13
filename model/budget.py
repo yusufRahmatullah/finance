@@ -9,7 +9,7 @@ class Budget(Base, db.Model):
     period = db.Column(db.Date)
 
     def __repr__(self):
-        return f'{self.name} | {self.amount} | {self.humanize_period() }'
+        return f'{self.name} | {self.amount} | {self.left }'
 
     @property
     @cached

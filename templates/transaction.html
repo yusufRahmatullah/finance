@@ -1,6 +1,8 @@
 {% extends "base_table.html" %}
 {% set title = 'Transactions' %}
 {% set onload_function = 'loadTransactions();' %}
+{% set table_add_link = '/transactions/add-form' %}
+
 {% block table_header %}
   <th>Date</th>
   <th>Budget</th>

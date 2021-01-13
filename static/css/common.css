@@ -1,0 +1,19 @@
+/* Tags */
+
+form {
+  padding: 0 32px;
+}
+
+table, form {
+  margin: 16px;
+}
+
+/* Classes */
+
+.brand-logo {
+  margin-left: 16px;
+}
+
+.btn-floating {
+  margin: 16px;
+}

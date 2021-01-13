@@ -1,6 +1,8 @@
 {% extends "base_table.html" %}
 {% set title = 'Budgets' %}
 {% set onload_function = 'getBudgets();' %}
+{% set table_add_link = '/budgets/add-form' %}
+
 {% block table_header %}
   <th>Name</th>
   <th>Amount</th>

@@ -42,6 +42,9 @@ class TransactionService(Base):
                 break
 
             left = budget.left
+            if left == 0:
+                continue
+
             trx_outcome = cur_outcome
             if trx_outcome > left:
                 trx_outcome = left

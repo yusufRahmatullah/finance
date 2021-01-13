@@ -1,0 +1,35 @@
+{% extends "base_form.html" %}
+{% set title = 'Add Transactions' %}
+{% set onload_function = 'initForm();' %}
+
+{% block form_body %}
+<label for="date">Transaction Date</label>
+<input name="date" type="text" class="datepicker" />
+
+<div class="input-field col s12">
+  <select multiple id="budget-name-options" name="budget">
+  </select>
+  <label>Budget</label>
+</div>
+
+<div class="input-field col s12">
+  <label for="thing">Thing</label>
+  <input name="thing" type="text" class="validate" />
+</div>
+
+<div class="input-field col s12"></div>
+  <label for="income">Income</label>
+  <input name="income" type="number" class="validate" min="0" />
+  <span id="income-error-msg" class="helper-text" data-error="invalid"></span>
+</div>
+
+<div class="input-field col s12"></div>
+  <label for="outcome">Outcome</label>
+  <input name="outcome" type="number" class="validate" min="0" />
+  <span id="outcome-error-msg" class="helper-text" data-error="invalid"></span>
+</div>
+{% endblock %}
+
+{% block page_script %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/transaction_add.js') }}"></script>
+{% endblock %}
