@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% if title %}
+    <title>{{ title }} | Finance</title>
+    {% else %}
+    <title>Finance</title>
+    {% endif %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+  </head>
+
+  {% if onload_function %}
+  <body onload="{{ onload_function }}">
+  {% else %}
+  <body>
+  {% endif %}
+
+    <nav>
+      <div class="nav-wrapper">
+        <span id="selected-menu" class="brand-logo">{{ title }}</span>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/">Home</a></li>
+          <li><a href="/budgets">Budgets</a></li>
+          <li><a href="/mutations">Mutations</a></li>
+          <li><a href="/transactions">Transactions</a></li>
+          <li><a href="/wallets">Wallets</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/common.js') }}"></script>
+    {% block page_script %}
+    {% endblock %}
+  </body>
+
+</html>

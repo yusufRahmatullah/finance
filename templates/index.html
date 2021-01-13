@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% set title = 'Home' %}
+{% set onload_function = 'loadSummary();' %}
+
+{% block content %}
+  <table>
+    <thead>
+      <th>Budget Left</th>
+      <th>Wallet Jenius</th>
+      <th>Total</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="budget_left"></td>
+        <td id="wallet_jenius"></td>
+        <td id="total"></td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
+
+{% block page_script %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

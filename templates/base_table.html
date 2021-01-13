@@ -1,36 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  {% if title %}
-    <title>{{ title }} | Finance</title>
-  {% else %}
-    <title>Finance</title>
-  {% endif %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
-  </head>
-{% if onload_function %}
-  <body onload="{{ onload_function }}">
-{% else %}
-  <body>
-{% endif %}
-    {% include 'base_nav.html' %}
+{% extends 'base.html' %}
 
-    <table>
-      <thead>
-        {% block table_header %}{% endblock %}
-      </thead>
-      <tbody id="table-body">
+{% block content %}
+  <table>
+    <thead>
+      {% block table_header %}{% endblock %}
+    </thead>
+    <tbody id="table-body">
 
-      </tbody>
-    </table>
+    </tbody>
+  </table>
 
-    <a class="btn-floating btn-large waves-effect waves-light red right" href="{{ table_add_link }}"><i class="material-icons">+</i></a>
-
-    <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/common.js') }}"></script>
-    {% block page_script %}{% endblock %}
-  </body>
-</html>
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large waves-effect waves-light red" href="{{ table_add_link }}"><i class="material-icons">+</i></a>
+</div>
+{% endblock %}

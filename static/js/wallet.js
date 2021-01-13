@@ -40,7 +40,6 @@ function walletView(wallet, bold) {
   return `
   <tr ${tr_attr}>
     <td>${humanizeName(wallet.name)}</td>
-    <td>${humanizeAmount(wallet.amount)}</td>
     <td>${humanizeAmount(wallet.left)}</td>
   </tr>
   `;
