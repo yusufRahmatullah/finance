@@ -3,13 +3,26 @@
 {% set onload_function = 'loadTransactions();' %}
 {% set table_add_link = '/transactions/add-form' %}
 
+{% block page_content %}
+<form name="form">
+  <div class="row">
+    <div class="input-field col s12">
+      <select id="budget-name-options" name="budget" onchange="generateTable();">
+        <option value="all">All</option>
+      </select>
+      <label>Budget</label>
+    </div>
+  </div>
+</form>
+{% endblock %}
+
 {% block table_header %}
   <th>Date</th>
   <th>Budget</th>
   <th>Thing</th>
   <th>Income</th>
   <th>Outcome</th>
-  <th>Total</th>
+  <th>Left</th>
 {% endblock %}
 {% block page_script %}
 <script type="text/javascript" src="{{ url_for('static', filename='js/transaction.js') }}"></script>
