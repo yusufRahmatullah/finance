@@ -9,6 +9,8 @@ function fillTable(data) {
 }
 
 function loadSummary() {
+  setPeriod();
+
   fetch('/summary')
   .then(resp => resp.json())
   .then(data => {

@@ -19,10 +19,11 @@ function generateTable(trxs, totalBudget) {
 }
 
 function getTransactions(totalBudget) {
+  setPeriod();
+
   fetch('/transactions/get')
   .then(resp => resp.json())
   .then(data => {
-    setPeriod();
     generateTable(data, totalBudget);
   })
   .catch(err => {

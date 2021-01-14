@@ -10,10 +10,11 @@ function generateTable(mutations) {
 }
 
 function loadMutations() {
+  setPeriod();
+
   fetch('/mutations/get')
   .then(resp => resp.json())
   .then(data => {
-    setPeriod();
     generateTable(data);
   })
   .catch(err => {

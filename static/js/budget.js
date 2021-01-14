@@ -34,10 +34,11 @@ function generateTable(budgets) {
 }
 
 function getBudgets() {
+  setPeriod();
+
   fetch('/budgets/get')
     .then(resp => resp.json())
     .then(data => {
-      setPeriod();
       generateTable(data);
     })
     .catch(err => {

@@ -20,10 +20,11 @@ function generateTable(wallets) {
 }
 
 function getWallets() {
+  setPeriod();
+
   fetch('/wallets/get')
     .then(resp => resp.json())
     .then(data => {
-      setPeriod();
       generateTable(data);
     })
     .catch(err => {
