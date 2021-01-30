@@ -79,7 +79,8 @@ class TransactionService(Base):
             .filter(Transaction.date.between(
                 begin.isoformat(),
                 end.isoformat()
-            )).all()
+            )) \
+            .order_by(Transaction.created_at.asc()).all()
 
     @staticmethod
     def _get_budgets_by_names(names: list, trx_date: date):

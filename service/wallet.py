@@ -19,13 +19,15 @@ class WalletService(Base):
 
     @staticmethod
     def find_by_name(name: str, mutation_date: date):
-        period = date(mutation_date.year, mutation_date.month, 1)
+        month = mutation_date.month
+        year = mutation_date.year
         if mutation_date.day >= 27:
-            if period.month == 12:
-                period.month = 1
-                period.year += 1
+            if month == 12:
+                month = 1
+                year += 1
             else:
-                period.month += 1
+                month += 1
+        period = date(year, month, 1)
         wallet = Wallet.query.filter_by(name=name, period=period).first()
         if not wallet:
             raise RecordNotFoundError

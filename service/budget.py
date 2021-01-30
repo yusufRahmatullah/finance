@@ -21,13 +21,15 @@ class BudgetService(Base):
 
     @staticmethod
     def find_by_name(name: str, trx_date: date):
-        period = date(trx_date.year, trx_date.month, 1)
+        year = trx_date.year
+        month = trx_date.month
         if trx_date.day >= 27:
-            if period.month == 12:
-                period.month = 1
-                period.year += 1
+            if month == 12:
+                month = 1
+                year += 1
             else:
-                period.month += 1
+                month += 1
+        period = date(year, month, 1)
         budget = Budget.query.filter_by(name=name, period=period).first()
         if not budget:
             raise RecordNotFoundError
