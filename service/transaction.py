@@ -80,7 +80,7 @@ class TransactionService(Base):
                 begin.isoformat(),
                 end.isoformat()
             )) \
-            .order_by(Transaction.created_at.asc()).all()
+            .order_by(Transaction.date.asc()).all()
 
     @staticmethod
     def _get_budgets_by_names(names: list, trx_date: date):

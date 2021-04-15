@@ -39,7 +39,9 @@ class WalletService(Base):
 
     @staticmethod
     def get_wallets(period: date):
-        return Wallet.query.filter_by(period=period).all()
+        return Wallet.query \
+            .filter_by(period=period) \
+            .order_by(Wallet.name.asc()).all()
 
     @staticmethod
     def get_wallet_names(period: date):

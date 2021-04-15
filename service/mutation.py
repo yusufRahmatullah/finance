@@ -41,4 +41,5 @@ class MutationService(Base):
             .filter(Mutation.date.between(
                 begin.isoformat(),
                 end.isoformat()
-            )).all()
+            )) \
+            .order_by(Mutation.date.asc()).all()
