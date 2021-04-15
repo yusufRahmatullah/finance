@@ -62,7 +62,7 @@ function initBudgets() {
     initMaterials();
   })
   .catch(err => {
-    console.error("Failed load transactions. " + err);
+    console.error("Failed load budgets. " + err);
   })
 }
 
@@ -103,6 +103,6 @@ function transactionView(trx, currentBudget, bold) {
     <td>${humanizeAmount(trx.income)}</td>
     <td>${humanizeAmount(trx.outcome)}</td>
     <td>${humanizeAmount(total)}</td>
-  </tr> 
+  </tr>
   `;
 }

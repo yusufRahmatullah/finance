@@ -3,6 +3,19 @@
 {% set onload_function = 'loadMutations();' %}
 {% set table_add_link = '/mutations/add-form' %}
 
+{% block page_content %}
+<form name="form">
+  <div class="row">
+    <div class="input-field col s12">
+      <select id="from-options" name="from" onchange="generateTable();">
+        <option value="all">All</option>
+      </select>
+      <label>From</label>
+    </div>
+  </div>
+</form>
+{% endblock %}
+
 {% block table_header %}
   <th>Date</th>
   <th>Thing</th>

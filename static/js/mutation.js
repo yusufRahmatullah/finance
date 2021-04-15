@@ -1,24 +1,64 @@
-function generateTable(mutations) {
+var mutationData = [];
+
+function generateTable() {
   var tableNode = q('#table-body');
   var ctn = '';
+  var from_name = q('#from-options').value;
 
-  mutations.forEach(m => {
-    ctn += mutationView(m);
+  tableNode.innerHTML = '';
+
+  mutationData.forEach(m => {
+    if (from_name == 'all' || from_name == m.from) {
+      ctn += mutationView(m);
+    }
   });
 
   appendNode(tableNode, ctn);
 }
 
-function loadMutations() {
+function getMutations() {
   setPeriod();
 
   fetch('/mutations/get')
   .then(resp => resp.json())
   .then(data => {
-    generateTable(data);
+    mutationData = data;
+    generateTable();
   })
   .catch(err => {
     console.error("Failed get mutations. " + err);
+  })
+}
+
+function initFromNames(names) {
+  var node = q('#from-options');
+  var ctn = '';
+
+  names.forEach(name => {
+    var from_name = humanizeName(name);
+    ctn += `<option value="${name}">${from_name}</option>`
+  });
+
+  appendNode(node, ctn);
+}
+
+function initMaterials() {
+  // select
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems);
+}
+
+function loadMutations() {
+  // get wallet names first
+  fetch('/wallets/names')
+  .then(resp => resp.json())
+  .then(data => {
+    initFromNames(data);
+    initMaterials();
+    getMutations();
+  })
+  .catch(err => {
+    console.error("Failed load wallets. " + err);
   })
 }
 
