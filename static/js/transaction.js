@@ -1,9 +1,3 @@
-/* Transaction function flow
-  loadTransaction ->  initBudgets (fetch /budgets/names)  ->  initBudgetNames
-                                                              initMaterials
-                      (fetch /budgets/total)  ->  getTransactions (fetch /transactions/get) ->  generateTable -> (each) transactionView
-*/
-
 var transactionData = [];
 var totalBudget = 0;
 
@@ -33,20 +27,6 @@ function generateTable() {
   appendNode(tableNode, ctn);
 }
 
-function getTransactions() {
-  setPeriod();
-
-  fetch('/transactions/get')
-  .then(resp => resp.json())
-  .then(data => {
-    transactionData = data;
-    generateTable();
-  })
-  .catch(err => {
-    console.error("Failed get transactions. " + err);
-  })
-}
-
 function initBudgetNames(names) {
   var node = q('#budget-name-options');
   var ctn = '';
@@ -59,39 +39,25 @@ function initBudgetNames(names) {
   appendNode(node, ctn);
 }
 
-function initBudgets() {
-  // get budget names first
-  fetch('/budgets/names')
-  .then(resp => resp.json())
-  .then(data => {
-    initBudgetNames(data);
-    initMaterials();
-  })
-  .catch(err => {
-    console.error("Failed load budgets. " + err);
-  })
-}
-
 function initMaterials() {
   // select
   var elems = document.querySelectorAll('select');
   var instances = M.FormSelect.init(elems);
 }
 
-function loadTransactions() {
-  // to init budget name select
-  initBudgets();
+async function loadTransactions() {
+  setPeriod();
 
-  // get total budgets first
-  fetch('/budgets/total')
-  .then(resp => resp.json())
-  .then(data => {
-    totalBudget = data.total;
-    getTransactions();
-  })
-  .catch(err => {
-    console.error("Failed load transactions. " + err);
-  })
+  var data = await fetchApi(API.budget.name);
+  initBudgetNames(data);
+  initMaterials();
+
+  data = await fetchApi(API.budget.total);
+  totalBudget = data.total;
+
+  data = await fetchApi(API.transaction.get);
+  transactionData = data;
+  generateTable();
 }
 
 function transactionView(trx, currentBudget, bold) {

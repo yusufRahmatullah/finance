@@ -1,9 +1,3 @@
-/* Mutation function flow
-  loadMutations (fetch /wallets/names)  ->  initFromNames
-                                            initMaterials
-                                            getMutations (fetch /mutations/get) ->  generateTable -> (each) mutationView
-*/
-
 var mutationData = [];
 
 function generateTable() {
@@ -20,20 +14,6 @@ function generateTable() {
   });
 
   appendNode(tableNode, ctn);
-}
-
-function getMutations() {
-  setPeriod();
-
-  fetch('/mutations/get')
-  .then(resp => resp.json())
-  .then(data => {
-    mutationData = data;
-    generateTable();
-  })
-  .catch(err => {
-    console.error("Failed get mutations. " + err);
-  })
 }
 
 function initFromNames(names) {
@@ -54,18 +34,16 @@ function initMaterials() {
   var instances = M.FormSelect.init(elems);
 }
 
-function loadMutations() {
-  // get wallet names first
-  fetch('/wallets/names')
-  .then(resp => resp.json())
-  .then(data => {
-    initFromNames(data);
-    initMaterials();
-    getMutations();
-  })
-  .catch(err => {
-    console.error("Failed load wallets. " + err);
-  })
+async function loadMutations() {
+  setPeriod();
+
+  var data = await fetchApi(API.wallet.name);
+  initFromNames(data);
+  initMaterials();
+
+  data = await fetchApi(API.mutation.get);
+  mutationData = data;
+  generateTable();
 }
 
 function mutationView(m, bold) {

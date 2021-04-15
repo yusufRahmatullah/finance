@@ -8,15 +8,9 @@ function fillTable(data) {
   total.innerHTML = humanizeAmount(data.total);
 }
 
-function loadSummary() {
+async function loadSummary() {
   setPeriod();
 
-  fetch('/summary')
-  .then(resp => resp.json())
-  .then(data => {
-    fillTable(data);
-  })
-  .catch(err => {
-    console.error("Failed get budgets. " + err);
-  })
+  var data = await fetchApi(API.summary);
+  fillTable(data);
 }

@@ -37,15 +37,9 @@ function generateTable(budgets) {
   appendNode(tableNode, ctn);
 }
 
-function getBudgets() {
+async function getBudgets() {
   setPeriod();
 
-  fetch('/budgets/get')
-    .then(resp => resp.json())
-    .then(data => {
-      generateTable(data);
-    })
-    .catch(err => {
-      console.error("Failed get budgets. " + err);
-    })
+  var data = await fetchApi(API.budget.get);
+  generateTable(data);
 }

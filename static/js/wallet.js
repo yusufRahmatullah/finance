@@ -1,7 +1,3 @@
-/* Wallet function flow
-  getWallets (fetch /wallets/get) -> generateTable  ->  (each) walletView
-*/
-
 function generateTable(wallets) {
   var tableNode = q('#table-body');
   var ctn = '';
@@ -23,17 +19,11 @@ function generateTable(wallets) {
   appendNode(tableNode, ctn);
 }
 
-function getWallets() {
+async function getWallets() {
   setPeriod();
 
-  fetch('/wallets/get')
-    .then(resp => resp.json())
-    .then(data => {
-      generateTable(data);
-    })
-    .catch(err => {
-      console.error("Failed get wallets. " + err);
-    })
+  var data = await fetchApi(API.wallet.get);
+  generateTable(data);
 }
 
 function walletView(wallet, bold) {

@@ -23,7 +23,7 @@ function getPeriod() {
 }
 
 function humanizeAmount(amount) {
-  if (amount == 0) {
+  if (!amount || amount == 0) {
     return '-';
   }
   return 'Rp' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
