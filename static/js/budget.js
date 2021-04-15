@@ -1,3 +1,7 @@
+/* Budget function flow
+  getBudgets (fetch /budgets/get) -> generateTable  -> (each) budgetView
+*/
+
 function budgetView(budget, bold) {
   var tr_attr = '';
   if (bold) {

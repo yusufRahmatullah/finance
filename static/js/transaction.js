@@ -1,3 +1,9 @@
+/* Transaction function flow
+  loadTransaction ->  initBudgets (fetch /budgets/names)  ->  initBudgetNames
+                                                              initMaterials
+                      (fetch /budgets/total)  ->  getTransactions (fetch /transactions/get) ->  generateTable -> (each) transactionView
+*/
+
 var transactionData = [];
 var totalBudget = 0;
 

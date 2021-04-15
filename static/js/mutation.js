@@ -1,3 +1,9 @@
+/* Mutation function flow
+  loadMutations (fetch /wallets/names)  ->  initFromNames
+                                            initMaterials
+                                            getMutations (fetch /mutations/get) ->  generateTable -> (each) mutationView
+*/
+
 var mutationData = [];
 
 function generateTable() {

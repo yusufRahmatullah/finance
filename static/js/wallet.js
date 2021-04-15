@@ -1,3 +1,7 @@
+/* Wallet function flow
+  getWallets (fetch /wallets/get) -> generateTable  ->  (each) walletView
+*/
+
 function generateTable(wallets) {
   var tableNode = q('#table-body');
   var ctn = '';
