@@ -44,6 +44,9 @@ async function loadMutations() {
   data = await fetchApi(API.mutation.get);
   mutationData = data;
   generateTable();
+
+  showTable();
+  showForm();
 }
 
 function mutationView(m, bold) {

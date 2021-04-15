@@ -13,4 +13,6 @@ async function loadSummary() {
 
   var data = await fetchApi(API.summary);
   fillTable(data);
+
+  showTable();
 }

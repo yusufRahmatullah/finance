@@ -58,6 +58,9 @@ async function loadTransactions() {
   data = await fetchApi(API.transaction.get);
   transactionData = data;
   generateTable();
+
+  showForm();
+  showTable();
 }
 
 function transactionView(trx, currentBudget, bold) {

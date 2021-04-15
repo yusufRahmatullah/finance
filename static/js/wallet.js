@@ -24,6 +24,8 @@ async function getWallets() {
 
   var data = await fetchApi(API.wallet.get);
   generateTable(data);
+
+  showTable();
 }
 
 function walletView(wallet, bold) {

@@ -3,7 +3,11 @@
 {% block content %}
   {% block page_content %} {% endblock%}
 
-  <table>
+  <div id="progress-bar" class="progress">
+    <div class="indeterminate"></div>
+  </div>
+
+  <table style="visibility: hidden;">
     <thead>
       {% block table_header %}{% endblock %}
     </thead>

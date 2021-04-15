@@ -42,4 +42,6 @@ async function getBudgets() {
 
   var data = await fetchApi(API.budget.get);
   generateTable(data);
+
+  showTable();
 }

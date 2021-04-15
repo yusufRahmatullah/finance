@@ -4,7 +4,11 @@
 {% set onload_function = 'loadSummary();' %}
 
 {% block content %}
-  <table>
+  <div id="progress-bar" class="progress">
+    <div class="indeterminate"></div>
+  </div>
+
+  <table style="visibility: hidden;">
     <thead>
       <th>Budget Left</th>
       <th>Wallet Jenius</th>

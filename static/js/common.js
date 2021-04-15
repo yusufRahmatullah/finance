@@ -62,3 +62,16 @@ function setPeriod() {
 
   node.innerHTML += ` - ${humanizePeriod(period)}`;
 }
+
+function showForm() {
+  var form = q('form');
+  form.style.display = "block";
+}
+
+function showTable() {
+  var progressBar = q('#progress-bar');
+  var tableNode = q('table');
+
+  progressBar.style.visibility = "hidden";
+  tableNode.style.visibility = "visible";
+}
